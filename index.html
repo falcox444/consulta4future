@@ -22,7 +22,7 @@
     }
 
     header img {
-      height: 100px;
+      height: 60px;
     }
 
     .main-section {
@@ -110,6 +110,21 @@
       margin-left: 10px;
     }
 
+    /* Media query per dispositivi mobili */
+    @media (max-width: 768px) {
+      .main-section {
+        flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
+      }
+
+      .line {
+        display: none; /* Nascondi la linea divisoria sui dispositivi mobili */
+      }
+
+      .menu, .content {
+        flex: unset; /* Permette alla sezione di espandersi pienamente */
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -119,7 +134,6 @@
   <h1>Consulta4Future</h1>
   <img src="Torricelli.png" alt="Logo destra">
 </header>
-
 
 <div class="main-section">
   <!-- Menu a sinistra -->
@@ -131,7 +145,7 @@
     <button onclick="showSection('notizie')">Notizie</button>
   </div>
 
-  <!-- Linea divisoria tra menu e contenuto, estesa fino al footer -->
+  <!-- Linea divisoria tra menu e contenuto -->
   <div class="line"></div>
 
   <!-- Contenuto a destra -->
