@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta4Future</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #4CAF50;
+      padding: 20px;
+      color: white;
+    }
+
+    header img {
+      height: 100px;
+    }
+
+    .main-section {
+      display: flex;
+      margin: 20px;
+      min-height: calc(100vh - 140px); /* Altezza minima per coprire tutta la pagina */
+    }
+
+    .menu {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .menu button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .menu button:hover {
+      background-color: #45a049;
+    }
+
+    .content {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .content h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .news-date {
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Stile per la linea divisoria */
+    .line {
+      border-left: 2px solid #ccc;
+      height: auto;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 0px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer img {
+      height: 20px;
+      margin-left: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="cons.jpg" alt="Logo sinistra">
+  <h1>Consulta4Future</h1>
+  <img src="Torricelli.png" alt="Logo destra">
+</header>
+
+
+<div class="main-section">
+  <!-- Menu a sinistra -->
+  <div class="menu">
+    <button onclick="showSection('chi-siamo')">Chi Siamo</button>
+    <button onclick="showSection('obiettivi')">I Nostri Obiettivi</button>
+    <button onclick="showSection('ruolo')">Il Ruolo della Consulta</button>
+    <button onclick="showSection('come-votare')">Come Si Vota</button>
+    <button onclick="showSection('notizie')">Notizie</button>
+  </div>
+
+  <!-- Linea divisoria tra menu e contenuto, estesa fino al footer -->
+  <div class="line"></div>
+
+  <!-- Contenuto a destra -->
+  <div class="content" id="content">
+    <!-- "Chi Siamo" sarà visibile al caricamento della pagina -->
+    <div id="chi-siamo">
+      <h2>Chi Siamo</h2>
+      <img src="membro1.jpg" alt="Membro 1">
+      <p>Descrizione del primo membro.</p>
+      <img src="membro2.jpg" alt="Membro 2">
+      <p>Descrizione del secondo membro.</p>
+      <img src="membro3.jpg" alt="Membro 3">
+      <p>Descrizione del terzo membro.</p>
+      <img src="membro4.jpg" alt="Membro 4">
+      <p>Descrizione del quarto membro.</p>
+    </div>
+
+    <div id="obiettivi" class="hidden">
+      <h2>I Nostri Obiettivi</h2>
+      <p>Descrizione dettagliata degli obiettivi della consulta.</p>
+    </div>
+
+    <div id="ruolo" class="hidden">
+      <h2>Il Ruolo della Consulta</h2>
+      <p>Descrizione del ruolo della consulta e cosa fa.</p>
+    </div>
+
+    <div id="come-votare" class="hidden">
+      <h2>Come Si Vota</h2>
+      <p>Descrizione delle modalità di voto per la consulta.</p>
+    </div>
+
+    <div id="notizie" class="hidden">
+      <h2>Notizie</h2>
+      <p class="news-date">12 Ottobre 2024</p>
+      <p>Descrizione di una notizia importante accompagnata da un'immagine.</p>
+      <img src="notizia1.jpg" alt="Notizia 1">
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 Consulta4Future - Tutti i diritti riservati</p>
+  <a href="https://www.instagram.com/consulta.4future/" target="_blank">
+    Seguici su Instagram
+    <img src="insta.webp" alt="Instagram">
+  </a>
+</footer>
+
+<script>
+  function showSection(sectionId) {
+    // Nasconde tutte le sezioni
+    document.querySelectorAll('.content > div').forEach(div => div.classList.add('hidden'));
+    
+    // Mostra solo la sezione cliccata
+    document.getElementById(sectionId).classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
