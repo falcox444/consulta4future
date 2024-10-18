@@ -6,12 +6,12 @@
   <title>Consulta4Future</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      overflow-x: hidden; /* Previene lo scorrimento orizzontale */
-    }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  overflow-x: hidden; /* Evita lo scroll orizzontale */
+}
 
     header {
       display: flex;
@@ -144,27 +144,35 @@
     form button:hover {
       background-color: #45a049;
     }
-
+    .main-section {
+      display: flex;
+      margin: 20px;
+      min-height: calc(100vh - 140px); /* Altezza minima per coprire tutta la pagina */
+    }
+    header, footer {
+  width: 100%; /* Modificato da 100vw a 100% */
+  box-sizing: border-box;
+  padding-left: 20px; /* Imposta padding coerente */
+  padding-right: 20px;
+    }
     /* Media query per dispositivi mobili */
     @media (max-width: 768px) {
-      .main-section {
-        flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
-      }
+  .main-section {
+    flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
+    margin: 0; /* Rimuove il margin sui dispositivi mobili per evitare spazi extra */
+  }
 
-      .line {
-        display: none; /* Nascondi la linea divisoria sui dispositivi mobili */
-      }
+  .menu, .content {
+    flex: unset; /* Permette alla sezione di espandersi pienamente */
+    width: 100%;
+    margin: 0; /* Rimuovi i margini */
+  }
 
-      .menu, .content {
-        flex: unset; /* Permette alla sezione di espandersi pienamente */
-        width: 100%;
-      }
-
-      header, footer {
-        padding-left: 0; /* Elimina padding a sinistra */
-        padding-right: 0; /* Elimina padding a destra */
-      }
-    }
+  header, footer {
+    padding: 10px; /* Imposta un padding minore */
+    width: 100%; /* Corregge la larghezza */
+  }
+}
   </style>
 </head>
 <body>
