@@ -229,20 +229,20 @@
     <div id="proposte" class="hidden">
       <h2>Proponi la tua idea!</h2>
       <form id="propostaForm" action="https://script.google.com/a/macros/itisetorricelli.it/s/AKfycbzPHSIlatXQG7cbQZWsif95dMggTGU_PMF1tHkfjsffzlcXMuYuKupBk0--_lzEYTGD/exec" method="post">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required><br><br>
-        
-        <label for="cognome">Cognome:</label><br>
-        <input type="text" id="cognome" name="cognome" required><br><br>
-
-        <label for="classe">Classe (es. 5Ci):</label><br>
-        <input type="text" id="classe" name="classe" pattern="^[0-9]{1}[A-Za-z]{2}$" required><br><br>
-
-        <label for="proposta">Proposta:</label><br>
-        <textarea id="proposta" name="proposta" rows="5" required></textarea><br><br>
-
-        <button type="submit">Invia Proposta</button>
-      </form>
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome"><br>
+          
+          <label for="cognome">Cognome:</label>
+          <input type="text" id="cognome" name="cognome"><br>
+          
+          <label for="classe">Classe:</label>
+          <input type="text" id="classe" name="classe"><br>
+          
+          <label for="proposta">Proposta:</label>
+          <textarea id="proposta" name="proposta"></textarea><br>
+          
+          <input type="submit" value="Invia">
+        </form>
       <p id="status"></p>
     </div>
   </div>
