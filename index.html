@@ -169,14 +169,61 @@
     }
   </style>
 </head>
-</head>
 <body>
+
 <header>
+  <img src="cons.jpg" alt="Logo sinistra">
   <h1>Consulta4Future</h1>
+  <img src="Torricelli.png" alt="Logo destra">
 </header>
 
 <div class="main-section">
+  <!-- Menu a sinistra -->
+  <div class="menu">
+    <button onclick="showSection('chi-siamo')">Chi Siamo</button>
+    <button onclick="showSection('obiettivi')">I Nostri Obiettivi</button>
+    <button onclick="showSection('ruolo')">Il Ruolo della Consulta</button>
+    <button onclick="showSection('come-votare')">Come Si Vota</button>
+    <button onclick="showSection('proposte')">Proposte</button>
+  </div>
+
+  <!-- Linea divisoria tra menu e contenuto -->
+  <div class="line"></div>
+
+  <!-- Contenuto a destra -->
   <div class="content" id="content">
+    <!-- "Chi Siamo" sarà visibile al caricamento della pagina -->
+    <div id="chi-siamo">
+      <h2>Chi Siamo</h2>
+      <img src="membro1.jpg" alt="Membro 1">
+      <p>Descrizione del primo membro.</p>
+      <img src="membro2.jpg" alt="Membro 2">
+      <p>Descrizione del secondo membro.</p>
+      <img src="membro3.jpg" alt="Membro 3">
+      <p>Descrizione del terzo membro.</p>
+      <img src="membro4.jpg" alt="Membro 4">
+      <p>Descrizione del quarto membro.</p>
+    </div>
+
+    <div id="obiettivi" class="hidden">
+      <h2>I Nostri Obiettivi</h2>
+      <p>Descrizione dettagliata degli obiettivi della consulta.</p>
+    </div>
+
+    <div id="ruolo" class="hidden">
+      <h2>Il Ruolo della Consulta</h2>
+      <p>Descrizione del ruolo della consulta e cosa fa.</p>
+    </div>
+
+    <div id="come-votare" class="hidden">
+      <h2>Come Si Vota</h2>
+      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. È possibile esprimere *UNA sola preferenza*</p>
+      <video controls>
+        <source src="videoVotazioni.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+      </video>
+    </div>
+
     <div id="proposte" class="hidden">
       <h2>Proponi la tua idea!</h2>
       <form id="propostaForm">
@@ -199,18 +246,43 @@
   </div>
 </div>
 
+<!-- Footer -->
+<footer>
+  <p>&copy; 2024 Consulta4Future - Tutti i diritti riservati</p>
+  <a href="https://www.instagram.com/consulta4future" target="_blank">
+    Seguici su Instagram
+    <img src="insta.webp" alt="Instagram">
+  </a>
+</footer>
+
 <script>
+  function showSection(sectionId) {
+    // Nasconde tutte le sezioni
+    document.querySelectorAll('.content > div').forEach(function(section) {
+      section.classList.add('hidden');
+    });
+    // Mostra la sezione selezionata
+    document.getElementById(sectionId).classList.remove('hidden');
+  }
+
+  // Imposta la sezione di default al caricamento della pagina
+  document.addEventListener('DOMContentLoaded', function() {
+    showSection('chi-siamo');
+  });
+
+  // Gestione invio del modulo con invio a Google Sheets
   document.getElementById('propostaForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Previene il refresh della pagina
 
-    // Raccogli i dati dal modulo
-    const nome = document.getElementById('nome').value;
-    const cognome = document.getElementById('cognome').value;
-    const classe = document.getElementById('classe').value;
-    const proposta = document.getElementById('proposta').value;
+    // Preleva i dati del modulo
+    var formData = new FormData(this);
+    var nome = formData.get('nome');
+    var cognome = formData.get('cognome');
+    var classe = formData.get('classe');
+    var proposta = formData.get('proposta');
 
     // URL del tuo Web App di Google Apps Script
-    const url = 'https://script.google.com/macros/s/AKfycbycJ30bet9wNhCrK_prdXvHhduYj2tSa5dyb-pnnqPcFlSY_8aV3snN7urKoYtoTNOv1A/exec';
+    var url = 'https://script.google.com/macros/s/AKfycbycJ30bet9wNhCrK_prdXvHhduYj2tSa5dyb-pnnqPcFlSY_8aV3snN7urKoYtoTNOv1A/exec';
 
     // Invia i dati tramite POST
     fetch(url, {
@@ -233,7 +305,6 @@
     }).catch(error => {
       // Se si verifica un errore di rete
       document.getElementById('status').innerText = 'Errore di rete. Riprova.';
-      console.error('Error:', error); // Stampa l'errore nella console
     });
   });
 </script>
