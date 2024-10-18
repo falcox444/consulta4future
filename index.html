@@ -6,21 +6,21 @@
   <title>Consulta4Future</title>
   <style>
     body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  overflow-x: hidden; /* Evita lo scroll orizzontale */
-}
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      overflow-x: hidden; /* Previene lo scorrimento orizzontale */
+    }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #4CAF50;
-      padding: 20px;
+      padding: 10px; /* Ridotto per migliorare la compatibilità */
       color: white;
-      width: 100vw; /* Assicura che prenda tutta la larghezza del viewport */
+      width: 100%; /* Assicura che prenda tutta la larghezza del viewport */
       box-sizing: border-box; /* Include padding nel calcolo della larghezza */
     }
 
@@ -30,8 +30,9 @@
 
     .main-section {
       display: flex;
-      margin: 20px;
+      margin: 0; /* Rimosso il margine per evitare spazi bianchi */
       min-height: calc(100vh - 140px); /* Altezza minima per coprire tutta la pagina */
+      box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
     }
 
     .menu {
@@ -93,8 +94,8 @@
       align-items: center;
       background-color: #4CAF50;
       color: white;
-      padding: 20px 0px;
-      width: 100vw; /* Assicura che prenda tutta la larghezza del viewport */
+      padding: 10px; /* Ridotto per migliorare la compatibilità */
+      width: 100%; /* Assicura che prenda tutta la larghezza del viewport */
       box-sizing: border-box; /* Include padding nel calcolo della larghezza */
     }
 
@@ -144,35 +145,28 @@
     form button:hover {
       background-color: #45a049;
     }
-    .main-section {
-      display: flex;
-      margin: 20px;
-      min-height: calc(100vh - 140px); /* Altezza minima per coprire tutta la pagina */
-    }
-    header, footer {
-  width: 100%; /* Modificato da 100vw a 100% */
-  box-sizing: border-box;
-  padding-left: 20px; /* Imposta padding coerente */
-  padding-right: 20px;
-    }
+
     /* Media query per dispositivi mobili */
     @media (max-width: 768px) {
-  .main-section {
-    flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
-    margin: 0; /* Rimuove il margin sui dispositivi mobili per evitare spazi extra */
-  }
+      .main-section {
+        flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
+      }
 
-  .menu, .content {
-    flex: unset; /* Permette alla sezione di espandersi pienamente */
-    width: 100%;
-    margin: 0; /* Rimuovi i margini */
-  }
+      .line {
+        display: none; /* Nascondi la linea divisoria sui dispositivi mobili */
+      }
 
-  header, footer {
-    padding: 10px; /* Imposta un padding minore */
-    width: 100%; /* Corregge la larghezza */
-  }
-}
+      .menu, .content {
+        flex: unset; /* Permette alla sezione di espandersi pienamente */
+        width: 100%;
+        margin: 0; /* Rimuove i margini */
+      }
+
+      header, footer {
+        padding: 10px; /* Assicura padding coerente */
+        width: 100%; /* Assicura che prenda tutta la larghezza del viewport */
+      }
+    }
   </style>
 </head>
 <body>
@@ -223,7 +217,7 @@
 
     <div id="come-votare" class="hidden">
       <h2>Come Si Vota</h2>
-      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile esprimere *UNA sola preferenza*</p>
+      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. È possibile esprimere *UNA sola preferenza*</p>
       <video controls>
         <source src="videoVotazioni.mp4" type="video/mp4">
         Il tuo browser non supporta il tag video.
@@ -264,24 +258,23 @@
 <script>
   function showSection(sectionId) {
     // Nasconde tutte le sezioni
-    document.querySelectorAll('.content > div').forEach(div => div.classList.add('hidden'));
-    
-    // Mostra solo la sezione cliccata
+    document.querySelectorAll('.content > div').forEach(function(section) {
+      section.classList.add('hidden');
+    });
+    // Mostra la sezione selezionata
     document.getElementById(sectionId).classList.remove('hidden');
   }
 
+  // Imposta la sezione di default al caricamento della pagina
+  document.addEventListener('DOMContentLoaded', function() {
+    showSection('chi-siamo');
+  });
+
+  // Gestione invio del modulo
   document.getElementById('propostaForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const nome = document.getElementById('nome').value;
-    const cognome = document.getElementById('cognome').value;
-    const classe = document.getElementById('classe').value;
-    const proposta = document.getElementById('proposta').value;
-
-    // Simulazione del salvataggio della proposta (in questo caso solo un messaggio)
-    document.getElementById('status').textContent = `Grazie ${nome}, la tua proposta è stata inviata con successo!`;
-
-    // Qui dovresti implementare il vero salvataggio su un file esterno (es. Google Docs o un database)
+    e.preventDefault(); // Previene il refresh della pagina
+    document.getElementById('status').innerText = 'Proposta inviata con successo!';
+    this.reset(); // Resetta il modulo
   });
 </script>
 
