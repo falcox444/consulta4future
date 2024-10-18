@@ -10,6 +10,7 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
+      overflow-x: hidden; /* Previene lo scorrimento orizzontale sui dispositivi mobili */
     }
 
     header {
@@ -68,6 +69,13 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
+    }
+
+    .content video {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      border-radius: 10px;
     }
 
     .news-date {
@@ -175,10 +183,11 @@
 
     <div id="come-votare" class="hidden">
       <h2>Come Si Vota</h2>
-      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione
-elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale),
-si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile
-esprimere *UNA sola preferenza*</p>
+      <video controls>
+        <source src="videoVotazioni.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+      </video>
+      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile esprimere *UNA sola preferenza*</p>
     </div>
 
     <div id="notizie" class="hidden">
