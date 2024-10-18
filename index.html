@@ -66,18 +66,11 @@
       color: #333;
     }
 
-    .content img {
+    .content img, .content video {
       max-width: 100%;
       height: auto;
       border-radius: 10px;
       margin-bottom: 20px;
-    }
-
-    .content video {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-      border-radius: 10px;
     }
 
     .news-date {
@@ -156,7 +149,7 @@
     <button onclick="showSection('obiettivi')">I Nostri Obiettivi</button>
     <button onclick="showSection('ruolo')">Il Ruolo della Consulta</button>
     <button onclick="showSection('come-votare')">Come Si Vota</button>
-    <button onclick="showSection('notizie')">Notizie</button>
+    <button onclick="showSection('proposte')">Proposte</button>
   </div>
 
   <!-- Linea divisoria tra menu e contenuto -->
@@ -191,16 +184,29 @@
       <h2>Come Si Vota</h2>
       <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile esprimere *UNA sola preferenza*</p>
       <video controls>
-        <source src="come_si_vota.mp4" type="video/mp4">
+        <source src="videoVotazioni.mp4" type="video/mp4">
         Il tuo browser non supporta il tag video.
       </video>
     </div>
 
-    <div id="notizie" class="hidden">
-      <h2>Notizie</h2>
-      <p class="news-date">12 Ottobre 2024</p>
-      <p>Descrizione di una notizia importante accompagnata da un'immagine.</p>
-      <img src="notizia1.jpg" alt="Notizia 1">
+    <div id="proposte" class="hidden">
+      <h2>Proponi la tua idea!</h2>
+      <form id="propostaForm">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br><br>
+        
+        <label for="cognome">Cognome:</label><br>
+        <input type="text" id="cognome" name="cognome" required><br><br>
+
+        <label for="classe">Classe (es. 5Ci):</label><br>
+        <input type="text" id="classe" name="classe" pattern="^[0-9]{1}[A-Za-z]{2}$" required><br><br>
+
+        <label for="proposta">Proposta:</label><br>
+        <textarea id="proposta" name="proposta" rows="5" required></textarea><br><br>
+
+        <button type="submit">Invia Proposta</button>
+      </form>
+      <p id="status"></p>
     </div>
   </div>
 </div>
@@ -222,6 +228,20 @@
     // Mostra solo la sezione cliccata
     document.getElementById(sectionId).classList.remove('hidden');
   }
+
+  document.getElementById('propostaForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nome = document.getElementById('nome').value;
+    const cognome = document.getElementById('cognome').value;
+    const classe = document.getElementById('classe').value;
+    const proposta = document.getElementById('proposta').value;
+
+    // Simulazione del salvataggio della proposta (in questo caso solo un messaggio)
+    document.getElementById('status').textContent = `Grazie ${nome}, la tua proposta è stata inviata con successo!`;
+
+    // Qui dovresti implementare il vero salvataggio su un file esterno (es. Google Docs o un database)
+  });
 </script>
 
 </body>
