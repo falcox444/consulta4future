@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
-      overflow-x: hidden; /* Previene lo scorrimento orizzontale */
+      overflow-x: hidden;
     }
 
     header {
@@ -18,10 +18,10 @@
       justify-content: space-between;
       align-items: center;
       background-color: #4CAF50;
-      padding: 10px; /* Ridotto per migliorare la compatibilità */
+      padding: 10px;
       color: white;
-      width: 100%; /* Assicura che prenda tutta la larghezza del viewport */
-      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
+      width: 100%;
+      box-sizing: border-box;
     }
 
     header img {
@@ -30,16 +30,16 @@
 
     .main-section {
       display: flex;
-      flex-direction: row; /* Mantiene la disposizione a fila */
-      margin: 0; /* Rimosso il margine per evitare spazi bianchi */
-      min-height: calc(100vh - 140px); /* Altezza minima per coprire tutta la pagina */
-      box-sizing: border-box; /* Include il padding nel calcolo della larghezza */
+      flex-direction: row;
+      margin: 0;
+      min-height: calc(100vh - 140px);
+      box-sizing: border-box;
     }
 
     .menu {
       flex: 1;
       padding: 20px;
-      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
+      box-sizing: border-box;
     }
 
     .menu button {
@@ -62,7 +62,7 @@
     .content {
       flex: 2;
       padding: 20px;
-      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
+      box-sizing: border-box;
     }
 
     .content h2 {
@@ -85,7 +85,6 @@
       display: none;
     }
 
-    /* Stile per la linea divisoria */
     .line {
       border-left: 2px solid #ccc;
       height: auto;
@@ -97,9 +96,9 @@
       align-items: center;
       background-color: #4CAF50;
       color: white;
-      padding: 10px; /* Ridotto per migliorare la compatibilità */
-      width: 100%; /* Assicura che prenda tutta la larghezza del viewport */
-      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     footer p {
@@ -149,24 +148,23 @@
       background-color: #45a049;
     }
 
-    /* Media query per dispositivi mobili */
     @media (max-width: 768px) {
       .main-section {
-        flex-direction: column; /* Disposizione a colonna per i dispositivi mobili */
+        flex-direction: column;
       }
 
       .line {
-        display: none; /* Nascondi la linea divisoria sui dispositivi mobili */
+        display: none;
       }
 
       .menu, .content {
-        flex: unset; /* Permette alla sezione di espandersi pienamente */
+        flex: unset;
         width: 100%;
-        margin: 0; /* Rimuove i margini */
+        margin: 0;
       }
 
       header, footer {
-        padding: 10px; /* Assicura padding coerente */
+        padding: 10px;
       }
     }
   </style>
@@ -272,11 +270,42 @@
     showSection('chi-siamo');
   });
 
-  // Gestione invio del modulo
+  // Gestione invio del modulo con invio a Google Sheets
   document.getElementById('propostaForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Previene il refresh della pagina
-    document.getElementById('status').innerText = 'Proposta inviata con successo!';
-    this.reset(); // Resetta il modulo
+
+    // Preleva i dati del modulo
+    var formData = new FormData(this);
+    var nome = formData.get('nome');
+    var cognome = formData.get('cognome');
+    var classe = formData.get('classe');
+    var proposta = formData.get('proposta');
+
+    // URL del tuo Web App di Google Apps Script
+    var url = 'https://script.google.com/macros/s/AKfycbycJ30bet9wNhCrK_prdXvHhduYj2tSa5dyb-pnnqPcFlSY_8aV3snN7urKoYtoTNOv1A/exec';
+
+    // Invia i dati tramite POST
+    fetch(url, {
+      method: 'POST',
+      body: new URLSearchParams({
+        'nome': nome,
+        'cognome': cognome,
+        'classe': classe,
+        'proposta': proposta
+      })
+    }).then(response => {
+      if (response.ok) {
+        // Aggiorna lo stato di successo
+        document.getElementById('status').innerText = 'Proposta inviata con successo!';
+        this.reset(); // Resetta il modulo
+      } else {
+        // Se ci sono errori
+        document.getElementById('status').innerText = 'Errore nell\'invio della proposta. Riprova.';
+      }
+    }).catch(error => {
+      // Se si verifica un errore di rete
+      document.getElementById('status').innerText = 'Errore di rete. Riprova.';
+    });
   });
 </script>
 
