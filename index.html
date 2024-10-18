@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
-      overflow-x: hidden; /* Previene lo scorrimento orizzontale sui dispositivi mobili */
+      overflow-x: hidden; /* Previene lo scorrimento orizzontale */
     }
 
     header {
@@ -20,6 +20,8 @@
       background-color: #4CAF50;
       padding: 20px;
       color: white;
+      width: 100vw; /* Assicura che prenda tutta la larghezza del viewport */
+      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
     }
 
     header img {
@@ -98,10 +100,9 @@
       align-items: center;
       background-color: #4CAF50;
       color: white;
-      padding: 0px 0px;
-      position: relative;
-      bottom: 0;
-      width: 100%;
+      padding: 10px 0px;
+      width: 100vw; /* Assicura che prenda tutta la larghezza del viewport */
+      box-sizing: border-box; /* Include padding nel calcolo della larghezza */
     }
 
     footer p {
@@ -131,6 +132,11 @@
       .menu, .content {
         flex: unset; /* Permette alla sezione di espandersi pienamente */
         width: 100%;
+      }
+
+      header, footer {
+        padding-left: 0; /* Elimina padding a sinistra */
+        padding-right: 0; /* Elimina padding a destra */
       }
     }
   </style>
@@ -183,11 +189,11 @@
 
     <div id="come-votare" class="hidden">
       <h2>Come Si Vota</h2>
+      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile esprimere *UNA sola preferenza*</p>
       <video controls>
-        <source src="videoVotazioni.mp4" type="video/mp4">
+        <source src="come_si_vota.mp4" type="video/mp4">
         Il tuo browser non supporta il tag video.
       </video>
-      <p>Per le elezioni dei componenti del Consulta provinciale, le classi, nell’ordine stabilito dalla Commissione elettorale (dalle ore 08:30 alle ore 13:00 per il corso diurno e dalle ore 16:00 alle ore 17:00 per il corso serale), si recheranno presso il seggio costituito nell’Auditorium dell’ITIS “Torricelli” di Sant’Agata Militello. E’ possibile esprimere *UNA sola preferenza*</p>
     </div>
 
     <div id="notizie" class="hidden">
